@@ -156,6 +156,66 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Problem */}
+      <section className="py-24 bg-secondary/40">
+        <div className="container">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="text-accent text-sm tracking-wider-2 uppercase mb-4">Узнаёте себя?</p>
+              <h2 className="font-display text-4xl md:text-5xl font-medium text-primary mb-10 leading-tight">
+                Три ситуации,<br />когда важно быть рядом
+              </h2>
+              <div className="space-y-5">
+                <div className="bg-card border border-border p-6 flex gap-5 items-start hover:border-accent/50 transition-colors duration-300">
+                  <div className="w-12 h-12 flex-shrink-0 bg-primary flex items-center justify-center text-background">
+                    <Icon name="AlarmClock" size={22} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-primary mb-1.5">Ранний рейс в 5 утра</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      Такси до отеля в центре — 1,5 часа в пробках. Мы — в 10 минутах. Выспитесь, а не сидите в зале ожидания.
+                    </p>
+                  </div>
+                </div>
+                <div className="bg-card border border-border p-6 flex gap-5 items-start hover:border-accent/50 transition-colors duration-300">
+                  <div className="w-12 h-12 flex-shrink-0 bg-primary flex items-center justify-center text-background">
+                    <Icon name="BriefcaseBusiness" size={22} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-primary mb-1.5">Командировка без суеты</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      Несколько встреч в городе, потом сразу вылет. Нужна база рядом с аэропортом — без лишних трансферов и потерянных часов.
+                    </p>
+                  </div>
+                </div>
+                <div className="bg-card border border-border p-6 flex gap-5 items-start hover:border-accent/50 transition-colors duration-300">
+                  <div className="w-12 h-12 flex-shrink-0 bg-primary flex items-center justify-center text-background">
+                    <Icon name="CircleAlert" size={22} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-primary mb-1.5">Квартира-«сюрприз»</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      Заказали жильё с фото из 2012-го, а приехали — совсем другое. У нас честные фото, точный адрес и гарантия соответствия.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <img
+                src="https://cdn.poehali.dev/projects/898e7672-cbb3-4c3e-85d0-048df965309b/files/e1a8b212-9bf0-4613-bf19-bd142edde6f6.jpg"
+                alt="Аэропорт Владивосток ночью"
+                className="w-full h-[520px] object-cover"
+              />
+              <div className="absolute bottom-6 left-6 bg-accent text-accent-foreground px-6 py-4">
+                <div className="font-display text-3xl font-semibold">5 мин</div>
+                <div className="text-sm tracking-wide mt-0.5">до терминала</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Objects */}
       <section id="objects" className="py-28">
         <div className="container">
