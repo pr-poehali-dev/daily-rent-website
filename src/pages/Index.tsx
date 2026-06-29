@@ -216,6 +216,96 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Solution — Bento Grid */}
+      <section className="py-24 bg-primary text-background">
+        <div className="container">
+          <div className="mb-12">
+            <p className="text-accent text-sm tracking-wider-2 uppercase mb-4">Почему мы</p>
+            <h2 className="font-display text-4xl md:text-5xl font-medium leading-tight">
+              Всё, что нужно —<br />уже внутри
+            </h2>
+          </div>
+
+          {/* Bento grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+            {/* Фото квартиры — большая карточка */}
+            <div className="col-span-2 row-span-2 relative overflow-hidden min-h-[320px]">
+              <img
+                src="https://cdn.poehali.dev/projects/898e7672-cbb3-4c3e-85d0-048df965309b/files/bcb3549b-a244-4780-a13f-0ab11d10ace1.jpg"
+                alt="Реальное фото квартиры"
+                className="w-full h-full object-cover absolute inset-0"
+              />
+              <div className="absolute inset-0 bg-primary/30" />
+              <div className="absolute top-5 left-5 flex gap-2 flex-wrap">
+                <span className="bg-accent text-accent-foreground text-xs px-3 py-1.5 tracking-wide font-semibold">
+                  ✓ Реальные фото
+                </span>
+                <span className="bg-background text-primary text-xs px-3 py-1.5 tracking-wide font-semibold">
+                  ✦ Новый ремонт
+                </span>
+              </div>
+            </div>
+
+            {/* 24/7 акцент */}
+            <div className="col-span-2 md:col-span-2 bg-accent text-accent-foreground p-7 flex flex-col justify-between">
+              <div className="flex items-center gap-3">
+                <Icon name="Clock" size={22} />
+                <span className="text-sm tracking-wide">Заезд в любое время</span>
+              </div>
+              <div className="font-display text-8xl md:text-9xl font-semibold leading-none mt-4 opacity-95">
+                24/7
+              </div>
+            </div>
+
+            {/* Уборка */}
+            <div className="bg-background/10 border border-background/15 hover:bg-background/15 transition-colors p-6 flex flex-col gap-4">
+              <div className="w-10 h-10 bg-background/10 flex items-center justify-center">
+                <Icon name="Sparkles" size={20} className="text-accent" />
+              </div>
+              <div>
+                <div className="font-semibold mb-1">Уборка</div>
+                <div className="text-background/60 text-sm">Перед каждым заездом. Свежее бельё и полотенца.</div>
+              </div>
+            </div>
+
+            {/* Кухня */}
+            <div className="bg-background/10 border border-background/15 hover:bg-background/15 transition-colors p-6 flex flex-col gap-4">
+              <div className="w-10 h-10 bg-background/10 flex items-center justify-center">
+                <Icon name="UtensilsCrossed" size={20} className="text-accent" />
+              </div>
+              <div>
+                <div className="font-semibold mb-1">Полная кухня</div>
+                <div className="text-background/60 text-sm">Плита, холодильник, микроволновка, посуда.</div>
+              </div>
+            </div>
+
+            {/* Wi-Fi */}
+            <div className="bg-background/10 border border-background/15 hover:bg-background/15 transition-colors p-6 flex flex-col gap-4">
+              <div className="w-10 h-10 bg-background/10 flex items-center justify-center">
+                <Icon name="Wifi" size={20} className="text-accent" />
+              </div>
+              <div>
+                <div className="font-semibold mb-1">Wi-Fi 100 Мбит</div>
+                <div className="text-background/60 text-sm">Быстрый интернет для работы и видеозвонков.</div>
+              </div>
+            </div>
+
+            {/* Парковка */}
+            <div className="bg-background/10 border border-background/15 hover:bg-background/15 transition-colors p-6 flex flex-col gap-4">
+              <div className="w-10 h-10 bg-background/10 flex items-center justify-center">
+                <Icon name="ParkingSquare" size={20} className="text-accent" />
+              </div>
+              <div>
+                <div className="font-semibold mb-1">Парковка</div>
+                <div className="text-background/60 text-sm">Бесплатное место рядом с домом.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Objects */}
       <section id="objects" className="py-28">
         <div className="container">
