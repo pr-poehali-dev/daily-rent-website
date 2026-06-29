@@ -1,15 +1,261 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import Icon from '@/components/ui/icon';
+import { Button } from '@/components/ui/button';
+
+const objects = [
+  {
+    title: 'Резиденция «Панорама»',
+    location: 'Москва-Сити, башня Федерация',
+    price: '12 500',
+    guests: 4,
+    rooms: 2,
+    area: 78,
+    image: 'https://cdn.poehali.dev/projects/898e7672-cbb3-4c3e-85d0-048df965309b/files/8e5732a0-9b78-44ff-9105-686973bd6cfe.jpg',
+  },
+  {
+    title: 'Студия «Скандинавия»',
+    location: 'Центр, Патриаршие пруды',
+    price: '7 900',
+    guests: 2,
+    rooms: 1,
+    area: 42,
+    image: 'https://cdn.poehali.dev/projects/898e7672-cbb3-4c3e-85d0-048df965309b/files/ccd2e127-0b50-44fe-b6b9-ce3d5b02449a.jpg',
+  },
+  {
+    title: 'Пентхаус «Меридиан»',
+    location: 'Пресненская набережная',
+    price: '24 000',
+    guests: 6,
+    rooms: 3,
+    area: 124,
+    image: 'https://cdn.poehali.dev/projects/898e7672-cbb3-4c3e-85d0-048df965309b/files/1918e643-323a-4455-9c85-d3ace1b0385d.jpg',
+  },
+];
+
+const reviews = [
+  {
+    name: 'Анна Соколова',
+    role: 'Руководитель департамента',
+    text: 'Безупречный сервис и внимание к деталям. Апартаменты соответствовали фотографиям полностью. Останавливалась трижды по работе.',
+  },
+  {
+    name: 'Дмитрий Орлов',
+    role: 'Финансовый директор',
+    text: 'Бронирование заняло минуту, заселение без задержек. Идеальная локация для деловых поездок в центр столицы.',
+  },
+  {
+    name: 'Елена Морозова',
+    role: 'Архитектор',
+    text: 'Эстетика интерьеров на высшем уровне. Чистота, тишина и продуманный комфорт. Рекомендую коллегам.',
+  },
+];
+
+const nav = [
+  { label: 'Главная', id: 'home' },
+  { label: 'Объекты', id: 'objects' },
+  { label: 'Отзывы', id: 'reviews' },
+  { label: 'Контакты', id: 'contacts' },
+];
 
 const Index = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMenuOpen(false);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
-      <span className="absolute bottom-8 left-1/2 -translate-x-1/2 inline-block bg-[#FF6637] text-white text-sm px-4 py-2 rounded-full whitespace-nowrap">
-        Подождите 5 минут, Юра создает первую версию проекта с нуля
-      </span>
+    <div className="min-h-screen bg-background text-foreground font-body antialiased">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/85 backdrop-blur-md border-b border-border">
+        <div className="container flex items-center justify-between h-20">
+          <button onClick={() => scrollTo('home')} className="flex items-center gap-2">
+            <span className="font-display text-2xl font-semibold tracking-tight text-primary">РЕЗИДЕНЦИЯ</span>
+          </button>
+          <nav className="hidden md:flex items-center gap-10">
+            {nav.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className="text-sm tracking-wide text-muted-foreground hover:text-primary transition-colors"
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+          <Button onClick={() => scrollTo('contacts')} className="hidden md:inline-flex rounded-none bg-accent hover:bg-accent/90 text-accent-foreground tracking-wide">
+            Забронировать
+          </Button>
+          <button className="md:hidden text-primary" onClick={() => setMenuOpen(!menuOpen)}>
+            <Icon name={menuOpen ? 'X' : 'Menu'} size={26} />
+          </button>
+        </div>
+        {menuOpen && (
+          <nav className="md:hidden border-t border-border bg-background px-6 py-4 flex flex-col gap-4">
+            {nav.map((item) => (
+              <button key={item.id} onClick={() => scrollTo(item.id)} className="text-left text-muted-foreground hover:text-primary">
+                {item.label}
+              </button>
+            ))}
+          </nav>
+        )}
+      </header>
+
+      {/* Hero */}
+      <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://cdn.poehali.dev/projects/898e7672-cbb3-4c3e-85d0-048df965309b/files/8e5732a0-9b78-44ff-9105-686973bd6cfe.jpg"
+            alt="Интерьер"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-primary/75" />
+        </div>
+        <div className="container relative z-10 py-24">
+          <p className="animate-fade-up text-accent text-sm tracking-wider-2 uppercase mb-6" style={{ animationDelay: '0.1s' }}>
+            Премиальная посуточная аренда
+          </p>
+          <h1 className="animate-fade-up font-display text-5xl md:text-7xl lg:text-8xl font-medium leading-[1.05] text-background max-w-4xl" style={{ animationDelay: '0.2s' }}>
+            Жильё, достойное<br />вашего уровня
+          </h1>
+          <p className="animate-fade-up mt-8 text-background/80 text-lg max-w-xl leading-relaxed" style={{ animationDelay: '0.35s' }}>
+            Тщательно отобранные апартаменты в лучших локациях столицы. Заселение в день обращения, безупречный сервис и полная конфиденциальность.
+          </p>
+          <div className="animate-fade-up mt-10 flex flex-wrap gap-4" style={{ animationDelay: '0.5s' }}>
+            <Button onClick={() => scrollTo('objects')} className="rounded-none bg-accent hover:bg-accent/90 text-accent-foreground h-12 px-8 tracking-wide">
+              Смотреть объекты
+            </Button>
+            <Button onClick={() => scrollTo('contacts')} variant="outline" className="rounded-none h-12 px-8 tracking-wide bg-transparent border-background/40 text-background hover:bg-background hover:text-primary">
+              Связаться с нами
+            </Button>
+          </div>
+          <div className="animate-fade-up mt-16 flex flex-wrap gap-12 border-t border-background/20 pt-8 max-w-2xl" style={{ animationDelay: '0.65s' }}>
+            {[['150+', 'объектов'], ['12 лет', 'на рынке'], ['4.9', 'средний рейтинг']].map(([n, l]) => (
+              <div key={l}>
+                <div className="font-display text-4xl text-background">{n}</div>
+                <div className="text-background/60 text-sm tracking-wide mt-1">{l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Objects */}
+      <section id="objects" className="py-28">
+        <div className="container">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+            <div>
+              <p className="text-accent text-sm tracking-wider-2 uppercase mb-4">Каталог</p>
+              <h2 className="font-display text-5xl md:text-6xl font-medium text-primary">Избранные объекты</h2>
+            </div>
+            <p className="text-muted-foreground max-w-sm leading-relaxed">
+              Каждый объект проходит проверку наших специалистов. Цена указана за сутки.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {objects.map((obj) => (
+              <article key={obj.title} className="group bg-card border border-border hover:shadow-xl transition-all duration-500">
+                <div className="relative overflow-hidden aspect-[4/5]">
+                  <img src={obj.image} alt={obj.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute top-4 left-4 bg-accent text-accent-foreground text-sm px-4 py-1.5 tracking-wide">
+                    {obj.price} ₽ / сутки
+                  </div>
+                </div>
+                <div className="p-7">
+                  <h3 className="font-display text-2xl font-semibold text-primary mb-2">{obj.title}</h3>
+                  <p className="flex items-center gap-2 text-muted-foreground text-sm mb-6">
+                    <Icon name="MapPin" size={16} className="text-accent" />
+                    {obj.location}
+                  </p>
+                  <div className="flex items-center gap-6 text-sm text-muted-foreground border-t border-border pt-5">
+                    <span className="flex items-center gap-2"><Icon name="Users" size={16} /> {obj.guests} гостя</span>
+                    <span className="flex items-center gap-2"><Icon name="DoorOpen" size={16} /> {obj.rooms} комн.</span>
+                    <span className="flex items-center gap-2"><Icon name="Maximize" size={16} /> {obj.area} м²</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews */}
+      <section id="reviews" className="py-28 bg-primary text-background">
+        <div className="container">
+          <div className="text-center mb-16">
+            <p className="text-accent text-sm tracking-wider-2 uppercase mb-4">Отзывы</p>
+            <h2 className="font-display text-5xl md:text-6xl font-medium">Нам доверяют</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {reviews.map((rev) => (
+              <div key={rev.name} className="border border-background/15 p-8 hover:border-accent/60 transition-colors duration-500">
+                <div className="flex gap-1 text-accent mb-6">
+                  {[...Array(5)].map((_, i) => <Icon key={i} name="Star" size={18} fallback="Star" />)}
+                </div>
+                <p className="text-background/85 leading-relaxed mb-8 font-display text-xl">«{rev.text}»</p>
+                <div className="border-t border-background/15 pt-5">
+                  <div className="font-semibold">{rev.name}</div>
+                  <div className="text-background/60 text-sm">{rev.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contacts */}
+      <section id="contacts" className="py-28">
+        <div className="container grid lg:grid-cols-2 gap-16 items-start">
+          <div>
+            <p className="text-accent text-sm tracking-wider-2 uppercase mb-4">Контакты</p>
+            <h2 className="font-display text-5xl md:text-6xl font-medium text-primary mb-8">Забронировать</h2>
+            <p className="text-muted-foreground leading-relaxed mb-10 max-w-md">
+              Оставьте заявку — персональный менеджер свяжется с вами в течение 15 минут и подберёт идеальный вариант.
+            </p>
+            <div className="space-y-6">
+              {[
+                ['Phone', '+7 (495) 000-00-00'],
+                ['Mail', 'booking@residence.ru'],
+                ['MapPin', 'Москва, Пресненская наб., 12'],
+                ['Clock', 'Ежедневно, 09:00 — 21:00'],
+              ].map(([icon, text]) => (
+                <div key={text} className="flex items-center gap-4">
+                  <div className="w-11 h-11 flex items-center justify-center bg-secondary text-accent">
+                    <Icon name={icon} size={20} />
+                  </div>
+                  <span className="text-primary">{text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <form className="bg-card border border-border p-8 md:p-10 space-y-5">
+            <div>
+              <label className="block text-sm text-muted-foreground mb-2 tracking-wide">Ваше имя</label>
+              <input type="text" className="w-full h-12 px-4 bg-background border border-input focus:border-accent outline-none transition-colors" placeholder="Иван Иванов" />
+            </div>
+            <div>
+              <label className="block text-sm text-muted-foreground mb-2 tracking-wide">Телефон</label>
+              <input type="tel" className="w-full h-12 px-4 bg-background border border-input focus:border-accent outline-none transition-colors" placeholder="+7 (___) ___-__-__" />
+            </div>
+            <div>
+              <label className="block text-sm text-muted-foreground mb-2 tracking-wide">Комментарий</label>
+              <textarea rows={4} className="w-full px-4 py-3 bg-background border border-input focus:border-accent outline-none transition-colors resize-none" placeholder="Даты заезда, пожелания..." />
+            </div>
+            <Button type="button" className="w-full rounded-none bg-accent hover:bg-accent/90 text-accent-foreground h-12 tracking-wide">
+              Отправить заявку
+            </Button>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-primary text-background/70 py-10 border-t border-background/10">
+        <div className="container flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+          <span className="font-display text-xl text-background">РЕЗИДЕНЦИЯ</span>
+          <span>© 2026 Резиденция. Премиальная посуточная аренда.</span>
+        </div>
+      </footer>
     </div>
   );
 };
