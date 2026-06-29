@@ -32,23 +32,7 @@ const objects = [
   },
 ];
 
-const reviews = [
-  {
-    name: 'Анна Соколова',
-    role: 'Руководитель департамента',
-    text: 'Безупречный сервис и внимание к деталям. Апартаменты соответствовали фотографиям полностью. Останавливалась трижды по работе.',
-  },
-  {
-    name: 'Дмитрий Орлов',
-    role: 'Финансовый директор',
-    text: 'Бронирование заняло минуту, заселение без задержек. Идеальная локация для деловых поездок в центр столицы.',
-  },
-  {
-    name: 'Елена Морозова',
-    role: 'Архитектор',
-    text: 'Эстетика интерьеров на высшем уровне. Чистота, тишина и продуманный комфорт. Рекомендую коллегам.',
-  },
-];
+
 
 const nav = [
   { label: 'Главная', id: 'home' },
@@ -345,23 +329,68 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Reviews */}
-      <section id="reviews" className="py-28 bg-primary text-background">
+      {/* Social Proof */}
+      <section id="reviews" className="py-24">
         <div className="container">
-          <div className="text-center mb-16">
-            <p className="text-accent text-sm tracking-wider-2 uppercase mb-4">Отзывы</p>
-            <h2 className="font-display text-5xl md:text-6xl font-medium">Нам доверяют</h2>
+          <div className="text-center mb-14">
+            <p className="text-accent text-sm tracking-wider-2 uppercase mb-4">Социальное доказательство</p>
+            <h2 className="font-display text-5xl md:text-6xl font-medium text-primary">Гости говорят сами</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {reviews.map((rev) => (
-              <div key={rev.name} className="border border-background/15 p-8 hover:border-accent/60 transition-colors duration-500">
-                <div className="flex gap-1 text-accent mb-6">
-                  {[...Array(5)].map((_, i) => <Icon key={i} name="Star" size={18} fallback="Star" />)}
+
+          {/* Метрики */}
+          <div className="grid grid-cols-3 gap-4 md:gap-8 mb-16 bg-primary text-background p-8 md:p-12">
+            {[
+              { value: '4.9', label: 'средний рейтинг', sub: 'из 5.0 на Avito и Ostrovok' },
+              { value: '200+', label: 'гостей приняли', sub: 'за последний год' },
+              { value: '97%', label: 'повторных броней', sub: 'возвращаются снова' },
+            ].map(({ value, label, sub }) => (
+              <div key={label} className="text-center">
+                <div className="font-display text-4xl md:text-6xl font-semibold text-accent">{value}</div>
+                <div className="mt-2 text-background text-sm md:text-base font-medium">{label}</div>
+                <div className="text-background/50 text-xs mt-1 hidden md:block">{sub}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Отзывы */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                name: 'Марина К.',
+                city: 'Хабаровск',
+                date: 'март 2025',
+                stars: 5,
+                text: 'Летела ранним рейсом в 5:30. Заселилась в 22:00, выспалась, утром вышла и через 7 минут была в терминале. Квартира один в один как на фото, чисто и уютно.',
+              },
+              {
+                name: 'Андрей Т.',
+                city: 'Москва',
+                date: 'январь 2025',
+                stars: 5,
+                text: 'Командировка во Владивосток, три ночи. Идеальная локация — офисы в центре города, аэропорт рядом. Wi-Fi хороший, кухня укомплектована. Буду снова.',
+              },
+              {
+                name: 'Светлана Р.',
+                city: 'Новосибирск',
+                date: 'апрель 2025',
+                stars: 5,
+                text: 'Снимала дважды. В первый раз боялась — мало ли что. Но всё честно: реальные фото, никаких сюрпризов. Хозяин отвечает мгновенно. Рекомендую всем знакомым.',
+              },
+            ].map((rev) => (
+              <div key={rev.name} className="bg-card border border-border p-8 flex flex-col hover:shadow-lg transition-shadow duration-300">
+                <div className="flex gap-1 text-accent mb-5">
+                  {[...Array(rev.stars)].map((_, i) => <Icon key={i} name="Star" size={16} fallback="Star" />)}
                 </div>
-                <p className="text-background/85 leading-relaxed mb-8 font-display text-xl">«{rev.text}»</p>
-                <div className="border-t border-background/15 pt-5">
-                  <div className="font-semibold">{rev.name}</div>
-                  <div className="text-background/60 text-sm">{rev.role}</div>
+                <p className="text-foreground/80 leading-relaxed font-display text-lg flex-1">«{rev.text}»</p>
+                <div className="border-t border-border pt-5 mt-6 flex items-center justify-between">
+                  <div>
+                    <div className="font-semibold text-primary">{rev.name}</div>
+                    <div className="text-muted-foreground text-sm flex items-center gap-1.5 mt-0.5">
+                      <Icon name="MapPin" size={13} />
+                      {rev.city}
+                    </div>
+                  </div>
+                  <div className="text-muted-foreground text-xs">{rev.date}</div>
                 </div>
               </div>
             ))}
