@@ -106,37 +106,52 @@ const Index = () => {
       <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://cdn.poehali.dev/projects/898e7672-cbb3-4c3e-85d0-048df965309b/files/8e5732a0-9b78-44ff-9105-686973bd6cfe.jpg"
-            alt="Интерьер"
+            src="https://cdn.poehali.dev/projects/898e7672-cbb3-4c3e-85d0-048df965309b/files/9c88a8f1-c083-4771-965a-32c9c7197a4f.jpg"
+            alt="Квартира у аэропорта Владивосток"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-primary/75" />
         </div>
         <div className="container relative z-10 py-24">
-          <p className="animate-fade-up text-accent text-sm tracking-wider-2 uppercase mb-6" style={{ animationDelay: '0.1s' }}>
-            Премиальная посуточная аренда
-          </p>
+          <div className="animate-fade-up inline-flex items-center gap-2.5 bg-background/10 backdrop-blur-sm border border-background/20 px-4 py-2 mb-6" style={{ animationDelay: '0.1s' }}>
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400" />
+            </span>
+            <span className="text-background/90 text-sm tracking-wide">Свободные даты — бронь за 5 минут</span>
+          </div>
           <h1 className="animate-fade-up font-display text-5xl md:text-7xl lg:text-8xl font-medium leading-[1.05] text-background max-w-4xl" style={{ animationDelay: '0.2s' }}>
-            Жильё, достойное<br />вашего уровня
+            Квартира у аэропорта<br />Владивосток
           </h1>
           <p className="animate-fade-up mt-8 text-background/80 text-lg max-w-xl leading-relaxed" style={{ animationDelay: '0.35s' }}>
-            Тщательно отобранные апартаменты в лучших локациях столицы. Заселение в день обращения, безупречный сервис и полная конфиденциальность.
+            Уютная квартира в нескольких минутах от аэропорта. Ранний заезд, поздний выезд, всё для комфортной остановки между рейсами или перед вылетом.
           </p>
           <div className="animate-fade-up mt-10 flex flex-wrap gap-4" style={{ animationDelay: '0.5s' }}>
-            <Button onClick={() => scrollTo('objects')} className="rounded-none bg-accent hover:bg-accent/90 text-accent-foreground h-12 px-8 tracking-wide">
-              Смотреть объекты
+            <Button onClick={() => scrollTo('contacts')} className="rounded-none bg-accent hover:bg-accent/90 text-accent-foreground h-12 px-8 tracking-wide">
+              Проверить свободные даты
             </Button>
-            <Button onClick={() => scrollTo('contacts')} variant="outline" className="rounded-none h-12 px-8 tracking-wide bg-transparent border-background/40 text-background hover:bg-background hover:text-primary">
-              Связаться с нами
+            <Button variant="outline" className="rounded-none h-12 px-8 tracking-wide bg-transparent border-background/40 text-background hover:bg-background hover:text-primary">
+              <Icon name="Phone" size={18} className="mr-2" />
+              Позвонить
             </Button>
           </div>
-          <div className="animate-fade-up mt-16 flex flex-wrap gap-12 border-t border-background/20 pt-8 max-w-2xl" style={{ animationDelay: '0.65s' }}>
-            {[['150+', 'объектов'], ['12 лет', 'на рынке'], ['4.9', 'средний рейтинг']].map(([n, l]) => (
-              <div key={l}>
-                <div className="font-display text-4xl text-background">{n}</div>
-                <div className="text-background/60 text-sm tracking-wide mt-1">{l}</div>
-              </div>
-            ))}
+          <div className="animate-fade-up mt-12 flex flex-wrap gap-x-8 gap-y-3 text-background/80 text-sm" style={{ animationDelay: '0.6s' }}>
+            <span className="flex items-center gap-2"><Icon name="Star" size={16} className="text-accent" /> Рейтинг 4.9</span>
+            <span className="flex items-center gap-2"><Icon name="ShieldCheck" size={16} className="text-accent" /> Залог возвращается</span>
+            <span className="flex items-center gap-2"><Icon name="Clock" size={16} className="text-accent" /> Заезд 24/7</span>
+          </div>
+          <div className="animate-fade-up mt-12 inline-flex flex-wrap items-center gap-x-10 gap-y-5 bg-background text-primary p-6 md:p-7 max-w-2xl" style={{ animationDelay: '0.7s' }}>
+            <div>
+              <div className="text-muted-foreground text-xs tracking-wide uppercase mb-1">Стоимость</div>
+              <div className="font-display text-3xl font-semibold">от 2 500 ₽<span className="text-base text-muted-foreground font-body">/сутки</span></div>
+            </div>
+            <div className="border-l border-border pl-10">
+              <div className="text-muted-foreground text-xs tracking-wide uppercase mb-1">До аэропорта</div>
+              <div className="font-display text-3xl font-semibold">5–10 мин</div>
+            </div>
+            <Button onClick={() => scrollTo('contacts')} className="rounded-none bg-accent hover:bg-accent/90 text-accent-foreground h-12 px-7 tracking-wide ml-auto">
+              Забронировать
+            </Button>
           </div>
         </div>
       </section>
