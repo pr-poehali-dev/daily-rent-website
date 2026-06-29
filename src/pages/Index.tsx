@@ -50,7 +50,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-body antialiased">
+    <div className="min-h-screen bg-background text-foreground font-body antialiased pb-16 md:pb-0">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/85 backdrop-blur-md border-b border-border">
         <div className="container flex items-center justify-between h-20">
@@ -398,47 +398,102 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contacts */}
-      <section id="contacts" className="py-28">
+      {/* Process — 3 шага */}
+      <section className="py-24 bg-secondary/40">
+        <div className="container">
+          <div className="text-center mb-14">
+            <p className="text-accent text-sm tracking-wider-2 uppercase mb-4">Как это работает</p>
+            <h2 className="font-display text-4xl md:text-5xl font-medium text-primary">3 шага до ключей</h2>
+            <p className="text-muted-foreground mt-4 max-w-md mx-auto">Никаких агентств и запутанных форм — просто напишите нам</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 relative">
+            <div className="hidden md:block absolute top-10 left-[calc(16.66%+2rem)] right-[calc(16.66%+2rem)] h-px border-t-2 border-dashed border-border" />
+            {[
+              { step: '01', icon: 'MessageSquare', title: 'Напишите или позвоните', text: 'Уточним даты и количество гостей. Ответим за 5 минут в любое время суток.' },
+              { step: '02', icon: 'CalendarCheck', title: 'Подтверждаем бронь', text: 'Фиксируем даты, присылаем адрес и инструкцию по самостоятельному заезду.' },
+              { step: '03', icon: 'KeyRound', title: 'Заезжаете в любое время', text: 'Код от замка придёт за час до заезда. Никаких ожиданий — всё автоматически.' },
+            ].map(({ step, icon, title, text }) => (
+              <div key={step} className="bg-card border border-border p-8 flex flex-col gap-5 relative">
+                <div className="absolute -top-4 left-8 bg-accent text-accent-foreground text-xs font-bold px-3 py-1 tracking-widest">{step}</div>
+                <div className="w-12 h-12 bg-primary flex items-center justify-center text-background mt-2">
+                  <Icon name={icon} size={22} />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-primary text-lg mb-2">{title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA + Form */}
+      <section id="contacts" className="py-24 bg-primary text-background">
         <div className="container grid lg:grid-cols-2 gap-16 items-start">
           <div>
-            <p className="text-accent text-sm tracking-wider-2 uppercase mb-4">Контакты</p>
-            <h2 className="font-display text-5xl md:text-6xl font-medium text-primary mb-8">Забронировать</h2>
-            <p className="text-muted-foreground leading-relaxed mb-10 max-w-md">
-              Оставьте заявку — персональный менеджер свяжется с вами в течение 15 минут и подберёт идеальный вариант.
+            <p className="text-accent text-sm tracking-wider-2 uppercase mb-4">Бронирование</p>
+            <h2 className="font-display text-4xl md:text-5xl font-medium mb-6 leading-tight">
+              Проверьте даты<br />прямо сейчас
+            </h2>
+            <p className="text-background/70 leading-relaxed mb-10 max-w-md">
+              Заполните форму — перезвоним за 5 минут и подтвердим свободные даты. Без предоплаты до подтверждения.
             </p>
-            <div className="space-y-6">
+            <div className="grid grid-cols-2 gap-4">
               {[
-                ['Phone', '+7 (495) 000-00-00'],
-                ['Mail', 'booking@residence.ru'],
-                ['MapPin', 'Москва, Пресненская наб., 12'],
-                ['Clock', 'Ежедневно, 09:00 — 21:00'],
-              ].map(([icon, text]) => (
-                <div key={text} className="flex items-center gap-4">
-                  <div className="w-11 h-11 flex items-center justify-center bg-secondary text-accent">
-                    <Icon name={icon} size={20} />
+                { icon: 'ShieldCheck', title: 'Залог возвращается', sub: 'в день выезда' },
+                { icon: 'Clock', title: 'Заезд 24/7', sub: 'в любое время суток' },
+                { icon: 'ImageIcon', title: 'Реальные фото', sub: 'без фотошопа' },
+                { icon: 'Phone', title: 'Ответим за 5 мин', sub: 'на звонок и WhatsApp' },
+              ].map(({ icon, title, sub }) => (
+                <div key={title} className="flex items-start gap-3 bg-background/8 border border-background/15 p-4">
+                  <Icon name={icon} size={20} className="text-accent mt-0.5 flex-shrink-0" />
+                  <div>
+                    <div className="text-sm font-semibold">{title}</div>
+                    <div className="text-background/50 text-xs mt-0.5">{sub}</div>
                   </div>
-                  <span className="text-primary">{text}</span>
                 </div>
               ))}
             </div>
-          </div>
-          <form className="bg-card border border-border p-8 md:p-10 space-y-5">
-            <div>
-              <label className="block text-sm text-muted-foreground mb-2 tracking-wide">Ваше имя</label>
-              <input type="text" className="w-full h-12 px-4 bg-background border border-input focus:border-accent outline-none transition-colors" placeholder="Иван Иванов" />
+            <div className="mt-8 flex items-center gap-4 border-t border-background/15 pt-8">
+              <div className="w-12 h-12 bg-accent flex items-center justify-center flex-shrink-0">
+                <Icon name="Phone" size={20} className="text-accent-foreground" />
+              </div>
+              <div>
+                <div className="text-background/60 text-xs tracking-wide uppercase">Позвонить напрямую</div>
+                <div className="font-display text-2xl font-semibold mt-0.5">+7 (000) 000-00-00</div>
+              </div>
             </div>
+          </div>
+          <form className="bg-background text-foreground p-8 md:p-10 space-y-5">
+            <h3 className="font-display text-2xl font-semibold text-primary mb-2">Проверить даты</h3>
             <div>
               <label className="block text-sm text-muted-foreground mb-2 tracking-wide">Телефон</label>
               <input type="tel" className="w-full h-12 px-4 bg-background border border-input focus:border-accent outline-none transition-colors" placeholder="+7 (___) ___-__-__" />
             </div>
-            <div>
-              <label className="block text-sm text-muted-foreground mb-2 tracking-wide">Комментарий</label>
-              <textarea rows={4} className="w-full px-4 py-3 bg-background border border-input focus:border-accent outline-none transition-colors resize-none" placeholder="Даты заезда, пожелания..." />
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm text-muted-foreground mb-2 tracking-wide">Дата заезда</label>
+                <input type="date" className="w-full h-12 px-4 bg-background border border-input focus:border-accent outline-none transition-colors text-primary" />
+              </div>
+              <div>
+                <label className="block text-sm text-muted-foreground mb-2 tracking-wide">Дата выезда</label>
+                <input type="date" className="w-full h-12 px-4 bg-background border border-input focus:border-accent outline-none transition-colors text-primary" />
+              </div>
             </div>
-            <Button type="button" className="w-full rounded-none bg-accent hover:bg-accent/90 text-accent-foreground h-12 tracking-wide">
-              Отправить заявку
+            <div>
+              <label className="block text-sm text-muted-foreground mb-2 tracking-wide">Гостей</label>
+              <select className="w-full h-12 px-4 bg-background border border-input focus:border-accent outline-none transition-colors text-primary">
+                <option>1 гость</option>
+                <option>2 гостя</option>
+                <option>3 гостя</option>
+                <option>4 гостя</option>
+              </select>
+            </div>
+            <Button type="button" className="w-full rounded-none bg-accent hover:bg-accent/90 text-accent-foreground h-13 text-base tracking-wide">
+              Проверить свободные даты
             </Button>
+            <p className="text-muted-foreground text-xs text-center">Перезвоним за 5 минут · Без предоплаты</p>
           </form>
         </div>
       </section>
@@ -450,6 +505,19 @@ const Index = () => {
           <span>© 2026 Резиденция. Премиальная посуточная аренда.</span>
         </div>
       </footer>
+
+      {/* Sticky mobile bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-background border-t border-border shadow-2xl">
+        <div className="flex items-center justify-between px-5 py-3">
+          <div>
+            <div className="text-muted-foreground text-xs">Стоимость</div>
+            <div className="font-display text-xl font-semibold text-primary">от 2 500 ₽<span className="text-sm text-muted-foreground font-body">/сут</span></div>
+          </div>
+          <Button onClick={() => scrollTo('contacts')} className="rounded-none bg-accent hover:bg-accent/90 text-accent-foreground h-11 px-7 tracking-wide">
+            Забронировать
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
